@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة روّاد الغد التعليمية | مدرسة روّاد الغد النموذجية - أريحا</title>
+
+<!-- إعدادات تطبيق الويب التقدمي (PWA) -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1e3a8a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="روّاد الغد">
+<link rel="apple-touch-icon" href="https://z-cdn-media.chatglm.cn/files/b1f12e1a-3048-4b26-aff9-3fba3cdc08c7.png?auth_key=1887680306-b42e44f4bb384238b6679f05b002998a-0-2527ab46db1f27043b737c61607b6291">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          'tajawal': ['Tajawal', 'sans-serif'],
+          'kufi': ['Reem Kufi', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: #f8fbff;
+    overflow-x: hidden;
+    color: #1e3a8a;
+  }
+
+  .hero-bg {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.2), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.15), transparent 50%),
+      linear-gradient(135deg, #ffffff 0%, #eff6ff 50%, #dbeafe 100%);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .shimmer-text {
+    background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .teacher-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .teacher-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.25);
+    border-color: rgba(59, 130, 246, 0.4);
+  }
+
+  .teacher-avatar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  .float-anim {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.7; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 2.5s infinite;
+  }
+
+  .ornament {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #3b82f6);
+  }
+
+  .ornament::after {
+    background: linear-gradient(90deg, #3b82f6, transparent);
+  }
+
+  .counter {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .achievements-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+    position: relative;
+  }
+
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 58, 138, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 40;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #eff6ff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #3b82f6, #1e3a8a);
+    border-radius: 10px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- شريط التنقل -->
+  <nav class="fixed top-0 right-0 left-0 z-50 py-3 transition-all duration-300">
+    <div class="container mx-auto px-4">
+      <div class="glass rounded-2xl px-4 py-2.5 flex items-center justify-between shadow-lg">
+        <a href="#home" class="flex items-center gap-2">
+          <img src="https://z-cdn-media.chatglm.cn/files/b1f12e1a-3048-4b26-aff9-3fba3cdc08c7.png?auth_key=1887680306-b42e44f4bb384238b6679f05b002998a-0-2527ab46db1f27043b737c61607b6291" alt="شعار رواد الغد" class="w-10 h-10 object-contain">
+          <div>
+            <div class="font-kufi font-bold text-blue-900 text-sm leading-tight">روّاد الغد النموذجية</div>
+            <div class="text-xs text-blue-600">أريحا · فلسطين</div>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center gap-1">
+          <a href="#home" class="px-4 py-2 rounded-lg text-blue-700 hover:bg-blue-50 hover:text-blue-900 transition font-medium text-sm">الرئيسية</a>
+          <a href="#about" class="px-4 py-2 rounded-lg text-blue-700 hover:bg-blue-50 hover:text-blue-900 transition font-medium text-sm">عن المدرسة</a>
+          <a href="#achievements" class="px-4 py-2 rounded-lg text-blue-700 hover:bg-blue-50 hover:text-blue-900 transition font-medium text-sm">الإنجازات</a>
+          <a href="#teachers" class="px-4 py-2 rounded-lg text-blue-700 hover:bg-blue-50 hover:text-blue-900 transition font-medium text-sm">منصات المعلمين</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- زر تثبيت التطبيق (يظهر عند دعم المتصفح) -->
+          <button id="pwaInstallBtn" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 transition shadow-md">
+            <i class="fa-solid fa-download"></i>
+            <span>تثبيت التطبيق</span>
+          </button>
+
+          <a href="#teachers" class="btn-primary text-white px-4 py-2 rounded-xl text-sm font-bold items-center gap-2 hidden sm:flex">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>المنصات</span>
+          </a>
+
+          <button id="menuBtn" class="md:hidden w-10 h-10 flex items-center justify-center text-blue-700">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- قائمة الهاتف -->
+  <div id="menuOverlay" class="menu-overlay md:hidden">
+    <button id="closeMenu" class="absolute top-6 left-6 w-10 h-10 flex items-center justify-center text-white">
+      <i class="fa-solid fa-times text-2xl"></i>
+    </button>
+    <div class="flex flex-col items-center justify-center h-full space-y-6">
+      <a href="#home" class="menu-link text-white text-2xl font-kufi font-bold hover:text-blue-200 transition">الرئيسية</a>
+      <a href="#about" class="menu-link text-white text-2xl font-kufi font-bold hover:text-blue-200 transition">عن المدرسة</a>
+      <a href="#achievements" class="menu-link text-white text-2xl font-kufi font-bold hover:text-blue-200 transition">الإنجازات</a>
+      <a href="#teachers" class="menu-link text-white text-2xl font-kufi font-bold hover:text-blue-200 transition">منصات المعلمين</a>
+    </div>
+  </div>
+
+  <!-- القسم الرئيسي -->
+  <section id="home" class="hero-bg min-h-screen relative pt-28 pb-16 overflow-hidden">
+    <div class="absolute top-20 left-5 w-48 h-48 sm:w-72 sm:h-72 bg-blue-300 rounded-full blur-3xl opacity-30 float-anim"></div>
+    <div class="absolute bottom-20 right-5 w-64 h-64 sm:w-96 sm:h-96 bg-blue-400 rounded-full blur-3xl opacity-20 float-anim" style="animation-delay: 2s;"></div>
+
+    <div class="container mx-auto px-4 relative">
+      <div class="max-w-4xl mx-auto text-center reveal">
+        <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md border border-blue-200 rounded-full px-4 py-1.5 mb-6">
+          <span class="w-2 h-2 bg-green-500 rounded-full pulse-ring"></span>
+          <span class="text-xs sm:text-sm font-medium text-blue-700"> منصة تعليمية تفاعلية</span>
+        </div>
+
+        <h1 class="font-kufi text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-5 leading-tight">
+          <span class="shimmer-text">منصة روّاد الغد</span>
+          <br>
+          <span class="text-blue-900">التعليمية</span>
+        </h1>
+
+        <p class="text-base sm:text-lg md:text-xl text-blue-700 mb-8 leading-relaxed max-w-2xl mx-auto">
+          مدرسة روّاد الغد النموذجية - أريحا · بوابة رقمية موحّدة تجمع منصات معلميها في فضاء واحد
+        </p>
+
+        <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mb-10">
+          <a href="#teachers" class="btn-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold flex items-center gap-2 sm:gap-3 shadow-lg">
+            <i class="fa-solid fa-graduation-cap"></i>
+            منصات المعلمين
+          </a>
+          <a href="#about" class="bg-white text-blue-700 border-2 border-blue-200 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold flex items-center gap-2 sm:gap-3 hover:border-blue-400 transition">
+            <i class="fa-solid fa-circle-info"></i>
+            تعرّف على المدرسة
+          </a>
+        </div>
+
+        <!-- الشعار -->
+        <div class="flex justify-center mb-10">
+          <div class="relative">
+            <div class="absolute inset-0 w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80">
+              <div class="absolute inset-0 rounded-full border-2 border-dashed border-blue-300/40 animate-spin" style="animation-duration: 30s;"></div>
+            </div>
+            <div class="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 bg-white rounded-full shadow-2xl shadow-blue-500/20 flex items-center justify-center p-10 float-anim">
+              <img src="https://z-cdn-media.chatglm.cn/files/b1f12e1a-3048-4b26-aff9-3fba3cdc08c7.png?auth_key=1887680306-b42e44f4bb384238b6679f05b002998a-0-2527ab46db1f27043b737c61607b6291" alt="شعار رواد الغد" class="w-full h-full object-contain">
+            </div>
+          </div>
+        </div>
+
+        <!-- إحصائيات -->
+        <div class="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+          <div>
+            <div class="font-kufi text-2xl sm:text-3xl md:text-4xl font-bold gradient-text counter" data-target="24">0</div>
+            <div class="text-xs sm:text-sm text-blue-600 font-medium">معلم ومعلمة</div>
+          </div>
+          <div>
+            <div class="font-kufi text-2xl sm:text-3xl md:text-4xl font-bold gradient-text counter" data-target="2012">0</div>
+            <div class="text-xs sm:text-sm text-blue-600 font-medium">سنة التأسيس</div>
+          </div>
+          <div>
+            <div class="font-kufi text-2xl sm:text-3xl md:text-4xl font-bold gradient-text counter" data-target="14">0</div>
+            <div class="text-xs sm:text-sm text-blue-600 font-medium">عاماً من العطاء</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم عن المدرسة -->
+  <section id="about" class="py-16 sm:py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 reveal">
+        <span class="ornament text-blue-600 font-bold text-sm mb-4">مدرسة فلسطينية نموذجية</span>
+        <h2 class="font-kufi text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4 mt-3">عن مدرسة روّاد الغد</h2>
+        <p class="text-blue-700 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+          مؤسسة تعليمية فلسطينية رائدة في مدينة أريحا، تأسست عام 2012، تجمع بين أصالة الماضي وحداثة المستقبل
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 mb-12 max-w-5xl mx-auto">
+        <div class="bg-blue-50 rounded-2xl p-6 text-center reveal border border-blue-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-bullseye text-white text-xl"></i>
+          </div>
+          <h3 class="font-kufi text-xl font-bold text-blue-900 mb-2">رؤيتنا</h3>
+          <p class="text-blue-700 text-sm leading-relaxed">
+            إعداد جيلٍ فلسطينيٍّ متعلمٍ ومبدع، يمتلك مهارات القرن الحادي والعشرين، ويُسهم في بناء مستقبلٍ أفضل لوطنه.
+          </p>
+        </div>
+
+        <div class="bg-blue-50 rounded-2xl p-6 text-center reveal border border-blue-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-rocket text-white text-xl"></i>
+          </div>
+          <h3 class="font-kufi text-xl font-bold text-blue-900 mb-2">رسالتنا</h3>
+          <p class="text-blue-700 text-sm leading-relaxed">
+            تقديم تعليمٍ نوعيٍّ يدمج بين القيم الفلسطينية الأصيلة والمعرفة الحديثة، عبر بيئة تعليمية محفّزة.
+          </p>
+        </div>
+
+        <div class="bg-blue-50 rounded-2xl p-6 text-center reveal border border-blue-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-gem text-white text-xl"></i>
+          </div>
+          <h3 class="font-kufi text-xl font-bold text-blue-900 mb-2">قيمنا</h3>
+          <p class="text-blue-700 text-sm leading-relaxed">
+            الانتماء الوطني الفلسطيني، التميّز والإبداع، الشفافية، والعمل الجماعي، والتعلّم المستمر.
+          </p>
+        </div>
+      </div>
+
+      <!-- نبذة -->
+      <div class="glass rounded-3xl p-6 sm:p-10 reveal shadow-xl max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-5 gap-6 items-center">
+          <div class="md:col-span-3">
+            <h3 class="font-kufi text-2xl sm:text-3xl font-bold text-blue-900 mb-4 flex items-center gap-3">
+              <i class="fa-solid fa-quote-right text-blue-400"></i>
+              نبذة عن المدرسة
+            </h3>
+            <p class="text-blue-700 leading-loose text-sm sm:text-base mb-3">
+              تقع مدرسة <span class="font-bold text-blue-900">روّاد الغد النموذجية</span> في مدينة أريحا الفلسطينية،
+              أقدم مدن العالم، وتُعدّ من المدارس النموذجية التي تُقدّم تعليماً متميزاً يجمع بين المنهج الوطني
+              وأحدث الأساليب التربوية.
+            </p>
+            <p class="text-blue-700 leading-loose text-sm sm:text-base">
+              تأسست المدرسة عام 2012، وتبنى فلسفة تعليمية تقوم على التعلّم النشط، وتنمية التفكير النقدي والإبداعي،
+              وتوظيف التكنولوجيا في عمليتي التدريس والتعلّم.
+            </p>
+          </div>
+          <div class="md:col-span-2 grid grid-cols-2 gap-3">
+            <div class="bg-white rounded-xl p-4 text-center shadow-md">
+              <i class="fa-solid fa-location-dot text-blue-600 text-2xl mb-2"></i>
+              <div class="font-bold text-blue-900 text-sm">الموقع</div>
+              <div class="text-xs text-blue-600">أريحا - فلسطين</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 text-center shadow-md">
+              <i class="fa-solid fa-calendar-days text-blue-600 text-2xl mb-2"></i>
+              <div class="font-bold text-blue-900 text-sm">التأسيس</div>
+              <div class="text-xs text-blue-600">عام 2012</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 text-center shadow-md">
+              <i class="fa-solid fa-flag text-blue-600 text-2xl mb-2"></i>
+              <div class="font-bold text-blue-900 text-sm">الانتماء</div>
+              <div class="text-xs text-blue-600">فلسطيني</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 text-center shadow-md">
+              <i class="fa-solid fa-users text-blue-600 text-2xl mb-2"></i>
+              <div class="font-bold text-blue-900 text-sm">الكادر</div>
+              <div class="text-xs text-blue-600">24 معلم</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم الإنجازات -->
+  <section id="achievements" class="py-16 sm:py-20 achievements-bg relative overflow-hidden">
+    <div class="container mx-auto px-4 relative">
+      <div class="text-center mb-12 reveal">
+        <span class="ornament text-blue-200 font-bold text-sm mb-4">إنجازاتنا</span>
+        <h2 class="font-kufi text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 mt-3">إنجازات مدرسة روّاد الغد</h2>
+        <p class="text-blue-100 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+          على مدى سنواتٍ من العطاء، حقّقت مدرستنا العديد من الإنجازات التي نعتزّ بها
+        </p>
+      </div>
+
+      <!-- أرقام -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto mb-10">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 text-center border border-white/15 reveal">
+          <div class="w-12 h-12 mx-auto bg-white/10 rounded-xl flex items-center justify-center mb-3">
+            <i class="fa-solid fa-medal text-blue-200 text-xl"></i>
+          </div>
+          <div class="font-kufi text-3xl sm:text-4xl font-bold text-white counter mb-1" data-target="35">0</div>
+          <div class="text-blue-200 text-xs sm:text-sm">جائزة وتكريم</div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 text-center border border-white/15 reveal">
+          <div class="w-12 h-12 mx-auto bg-white/10 rounded-xl flex items-center justify-center mb-3">
+            <i class="fa-solid fa-flask text-blue-200 text-xl"></i>
+          </div>
+          <div class="font-kufi text-3xl sm:text-4xl font-bold text-white counter mb-1" data-target="85">0</div>
+          <div class="text-blue-200 text-xs sm:text-sm">مشروع علمي</div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 text-center border border-white/15 reveal">
+          <div class="w-12 h-12 mx-auto bg-white/10 rounded-xl flex items-center justify-center mb-3">
+            <i class="fa-solid fa-microscope text-blue-200 text-xl"></i>
+          </div>
+          <div class="font-kufi text-3xl sm:text-4xl font-bold text-white counter mb-1" data-target="28">0</div>
+          <div class="text-blue-200 text-xs sm:text-sm">مشاركة بحثية</div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-6 text-center border border-white/15 reveal">
+          <div class="w-12 h-12 mx-auto bg-white/10 rounded-xl flex items-center justify-center mb-3">
+            <i class="fa-solid fa-handshake text-blue-200 text-xl"></i>
+          </div>
+          <div class="font-kufi text-3xl sm:text-4xl font-bold text-white counter mb-1" data-target="15">0</div>
+          <div class="text-blue-200 text-xs sm:text-sm">شراكة تعليمية</div>
+        </div>
+      </div>
+
+      <!-- قائمة الإنجازات -->
+      <div class="grid sm:grid-cols-2 gap-4 sm:gap-5 max-w-5xl mx-auto">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 reveal">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 flex-shrink-0 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg flex items-center justify-center">
+              <i class="fa-solid fa-trophy text-white"></i>
+            </div>
+            <div>
+              <h4 class="font-kufi text-base sm:text-lg font-bold text-white mb-1">المركز الأول في الأولمبياد العلمي</h4>
+              <p class="text-blue-100 text-sm leading-relaxed">
+                تتويج طلاب المدرسة بمراكز متقدمة في الأولمبياد الوطني للعلوم والرياضيات.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 reveal">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 flex-shrink-0 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg flex items-center justify-center">
+              <i class="fa-solid fa-robot text-white"></i>
+            </div>
+            <div>
+              <h4 class="font-kufi text-base sm:text-lg font-bold text-white mb-1">بطولة الروبوت التعليمي</h4>
+              <p class="text-blue-100 text-sm leading-relaxed">
+                تأهل فرق المدرسة لبطولات الروبوت ومراكز متقدّمة في البرمجة والذكاء الاصطناعي.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 reveal">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 flex-shrink-0 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg flex items-center justify-center">
+              <i class="fa-solid fa-book text-white"></i>
+            </div>
+            <div>
+              <h4 class="font-kufi text-base sm:text-lg font-bold text-white mb-1">مكتبة رقمية رائدة</h4>
+              <p class="text-blue-100 text-sm leading-relaxed">
+                تأسيس مكتبة رقمية تفاعلية تضم آلاف المصادر التعليمية والكتب الإلكترونية.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 reveal">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 flex-shrink-0 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg flex items-center justify-center">
+              <i class="fa-solid fa-globe text-white"></i>
+            </div>
+            <div>
+              <h4 class="font-kufi text-base sm:text-lg font-bold text-white mb-1">شراكات تعليمية</h4>
+              <p class="text-blue-100 text-sm leading-relaxed">
+                عقد شراكات تعليمية وثقافية مع مؤسساتٍ محلية وعربية، وتبادلٍ طلابي مع مدارس شقيقة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم منصات المعلمين -->
+  <section id="teachers" class="py-16 sm:py-20 bg-[#f8fbff] relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
+
+    <div class="container mx-auto px-4 relative">
+      <div class="text-center mb-10 reveal">
+        <span class="ornament text-blue-600 font-bold text-sm mb-4">المنصة الموحّدة</span>
+        <h2 class="font-kufi text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4 mt-3">منصات المعلمين</h2>
+        <p class="text-blue-700 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+          بوابةٌ موحّدةٌ تجمع منصات جميع معلمي المدرسة في مكانٍ واحد
+        </p>
+      </div>
+
+      <!-- البحث -->
+      <div class="max-w-3xl mx-auto mb-8 reveal">
+        <div class="glass rounded-2xl p-3 flex flex-col sm:flex-row gap-2 items-center shadow-lg">
+          <div class="relative flex-1 w-full">
+            <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-blue-400"></i>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="ابحث عن معلم باسمه..."
+              class="w-full bg-white border border-blue-200 rounded-xl py-2.5 pr-11 pl-4 text-blue-900 placeholder-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition text-sm"
+            >
+          </div>
+          <div class="flex items-center gap-2 bg-blue-50 rounded-xl px-4 py-2.5 text-sm w-full sm:w-auto justify-center">
+            <i class="fa-solid fa-users text-blue-600"></i>
+            <span class="text-blue-700 font-medium">العدد:</span>
+            <span id="teacherCount" class="font-bold text-blue-900">24</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- شبكة المعلمين -->
+      <div id="teachersGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+      </div>
+
+      <!-- لا نتائج -->
+      <div id="noResults" class="hidden text-center py-12">
+        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+          <i class="fa-solid fa-user-slash text-blue-400 text-2xl"></i>
+        </div>
+        <h3 class="font-kufi text-xl font-bold text-blue-900 mb-1">لا توجد نتائج</h3>
+        <p class="text-blue-600 text-sm">لم نعثر على معلمٍ يطابق بحثك</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- التذييل -->
+  <footer class="bg-blue-950 text-blue-100 pt-12 pb-6 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-72 h-72 bg-blue-700 rounded-full blur-3xl opacity-20"></div>
+
+    <div class="container mx-auto px-4 relative">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <!-- الشعار -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <img src="https://z-cdn-media.chatglm.cn/files/b1f12e1a-3048-4b26-aff9-3fba3cdc08c7.png?auth_key=1887680306-b42e44f4bb384238b6679f05b002998a-0-2527ab46db1f27043b737c61607b6291" alt="شعار رواد الغد" class="w-12 h-12 object-contain bg-white rounded-xl p-1">
+            <div>
+              <div class="font-kufi font-bold text-white text-lg">روّاد الغد النموذجية</div>
+              <div class="text-xs text-blue-300">Future Pioneers' Model School</div>
+            </div>
+          </div>
+          <p class="text-blue-200 leading-relaxed text-sm mb-4">
+            مدرسةٌ فلسطينيةٌ نموذجيةٌ في مدينة أريحا، تأسست عام 2012، نسعى لتقديم تعليمٍ متميزٍ يجمع بين القيم الأصيلة والمعرفة الحديثة.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="w-9 h-9 bg-blue-900 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
+              <i class="fa-brands fa-facebook-f text-white text-sm"></i>
+            </a>
+            <a href="#" class="w-9 h-9 bg-blue-900 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
+              <i class="fa-brands fa-instagram text-white text-sm"></i>
+            </a>
+            <a href="#" class="w-9 h-9 bg-blue-900 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
+              <i class="fa-brands fa-youtube text-white text-sm"></i>
+            </a>
+            <a href="#" class="w-9 h-9 bg-blue-900 rounded-lg flex items-center justify-center hover:bg-blue-600 transition">
+              <i class="fa-brands fa-telegram text-white text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- روابط -->
+        <div>
+          <h4 class="font-kufi font-bold text-white text-base mb-4">روابط سريعة</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-blue-200 hover:text-white transition text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-left text-xs"></i> الرئيسية</a></li>
+            <li><a href="#about" class="text-blue-200 hover:text-white transition text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-left text-xs"></i> عن المدرسة</a></li>
+            <li><a href="#achievements" class="text-blue-200 hover:text-white transition text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-left text-xs"></i> إنجازاتنا</a></li>
+            <li><a href="#teachers" class="text-blue-200 hover:text-white transition text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-left text-xs"></i> منصات المعلمين</a></li>
+          </ul>
+        </div>
+
+        <!-- تواصل -->
+        <div>
+          <h4 class="font-kufi font-bold text-white text-base mb-4">تواصل معنا</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-location-dot text-blue-300 text-sm"></i>
+              </div>
+              <div>
+                <div class="text-white text-sm font-medium">العنوان</div>
+                <div class="text-blue-200 text-sm">أريحا - فلسطين</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-2">
+              <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-phone text-blue-300 text-sm"></i>
+              </div>
+              <div>
+                <div class="text-white text-sm font-medium">الهاتف</div>
+                <div class="text-blue-200 text-sm" dir="ltr">+970 2 000 0000</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-2">
+              <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-envelope text-blue-300 text-sm"></i>
+              </div>
+              <div>
+                <div class="text-white text-sm font-medium">البريد الإلكتروني</div>
+                <div class="text-blue-200 text-sm" dir="ltr">info@fpms-jericho.edu</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-blue-800 pt-5 text-center">
+        <div class="text-blue-300 text-sm mb-1">
+          © 2026 مدرسة روّاد الغد النموذجية - أريحا · فلسطين · جميع الحقوق محفوظة
+        </div>
+        <div class="text-blue-400 text-xs">
+          تم تصميم المنصة عام 2026
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- زر العودة للأعلى -->
+  <button id="scrollTop" class="fixed bottom-5 left-5 w-11 h-11 bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-xl shadow-xl flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:scale-110 z-40">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    const teachers = [
+      { name: "أ. إيهاب", subject: "معلم", icon: "fa-user", link: "https://sites.google.com/view/54546848/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9-%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9" },
+      { name: "أ. عمر", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. نسيم", subject: "معلم", icon: "fa-user", link: "https://sites.google.com/view/0569366279/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9-%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9" },
+      { name: "أ. جهاد", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. تمارا", subject: "معلم", icon: "fa-user", link: "https://mega.nz/folder/VUACjZxK#2nhPQbAJJFNGe8rJiwlPqg" },
+      { name: "أ. سوزان", subject: "معلم", icon: "fa-user", link: "https://sites.google.com/view/t-suzan-jehads-platform/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9-%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9" },
+      { name: "أ. عبير", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. منى", subject: "معلم", icon: "fa-user", link: "https://sites.google.com/view/munaabdo674/home" },
+      { name: "أ. هبة", subject: "معلم", icon: "fa-user", link: "https://sites.google.com/view/20032027/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9-%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9" },
+      { name: "أ. نادين", subject: "معلم", icon: "fa-user", link: "https://sites.google.com/view/2442004/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9-%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9" },
+      { name: "أ. سميحة", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. علا", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. سماح", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. سجود", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. بسملة", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. مرام", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. سناء", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. سلمى", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. نهال", subject: "معلم", icon: "fa-user", link: "https://sites.google.com/view/0599915841/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9-%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9" },
+      { name: "أ. منار", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "مديرة المدرسة", subject: "إدارة", icon: "fa-user-tie", link: "#" },
+      { name: "أ. هناء", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. إيمان", subject: "معلم", icon: "fa-user", link: "#" },
+      { name: "أ. شيرين", subject: "معلم", icon: "fa-user", link: "#" },
+    ];
+
+    const teachersGrid = document.getElementById('teachersGrid');
+    const noResults = document.getElementById('noResults');
+    const teacherCountEl = document.getElementById('teacherCount');
+
+    function renderTeachers(list) {
+      teachersGrid.innerHTML = '';
+      if (list.length === 0) {
+        noResults.classList.remove('hidden');
+        teacherCountEl.textContent = '0';
+        return;
+      }
+      noResults.classList.add('hidden');
+      teacherCountEl.textContent = list.length;
+
+      list.forEach((teacher) => {
+        const card = document.createElement('div');
+        card.className = 'teacher-card rounded-xl p-3 sm:p-4 text-center';
+        
+        const isLinkActive = teacher.link !== "#";
+        const linkHtml = isLinkActive 
+          ? `<a href="${teacher.link}" target="_blank" class="block btn-primary text-white py-2 rounded-lg text-xs font-bold">الدخول للمنصة</a>`
+          : `<button disabled class="block bg-gray-300 text-gray-500 py-2 rounded-lg text-xs font-bold cursor-not-allowed w-full">المنصة قريباً</button>`;
+          
+        card.innerHTML = `
+          <div class="teacher-avatar w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mx-auto mb-3 shadow-md">
+            <i class="fa-solid ${teacher.icon} text-white text-base sm:text-lg"></i>
+          </div>
+          <h3 class="font-kufi font-bold text-blue-900 text-xs sm:text-sm leading-tight mb-1 min-h-[2.5rem] flex items-center justify-center">
+            ${teacher.name}
+          </h3>
+          <div class="bg-blue-50 rounded-full px-2 py-0.5 mb-3 inline-block">
+            <span class="text-xs font-medium text-blue-700">${teacher.subject}</span>
+          </div>
+          ${linkHtml}
+        `;
+        teachersGrid.appendChild(card);
+      });
+    }
+
+    // البحث
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const query = e.target.value.trim().toLowerCase();
+      const filtered = teachers.filter(t =>
+        t.name.toLowerCase().includes(query) ||
+        t.subject.toLowerCase().includes(query)
+      );
+      renderTeachers(filtered);
+    });
+
+    renderTeachers(teachers);
+
+    // العدّادات
+    function animateCounter(element) {
+      const target = parseInt(element.dataset.target);
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const update = () => {
+        current += step;
+        if (current < target) {
+          element.textContent = Math.floor(current);
+          requestAnimationFrame(update);
+        } else {
+          element.textContent = target;
+        }
+      };
+      update();
+    }
+
+    // الظهور التدريجي
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          const counters = entry.target.querySelectorAll('.counter');
+          counters.forEach(counter => {
+            if (!counter.dataset.animated) {
+              counter.dataset.animated = 'true';
+              animateCounter(counter);
+            }
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // زر العودة للأعلى
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        scrollTopBtn.style.opacity = '1';
+        scrollTopBtn.style.visibility = 'visible';
+      } else {
+        scrollTopBtn.style.opacity = '0';
+        scrollTopBtn.style.visibility = 'hidden';
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // قائمة الهاتف
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const closeMenu = document.getElementById('closeMenu');
+
+    menuBtn.addEventListener('click', () => {
+      menuOverlay.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      menuOverlay.classList.remove('active');
+    });
+
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOverlay.classList.remove('active');
+      });
+    });
+
+    setTimeout(() => {
+      document.querySelectorAll('#home .counter').forEach(counter => {
+        if (!counter.dataset.animated) {
+          counter.dataset.animated = 'true';
+          animateCounter(counter);
+        }
+      });
+    }, 500);
+
+    /* ====================================================================
+     * 🚀 منطق تثبيت الـ PWA وتشغيل الـ Service Worker
+     * ==================================================================== */
+    // تسجيل مشغل الخدمة
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => console.log('Service Worker Registered successfully:', reg.scope))
+          .catch((err) => console.error('Service Worker Registration failed:', err));
+      });
+    }
+
+    // إظهار زر التثبيت عند توفر الحدث
+    let deferredPrompt;
+    const installBtn = document.getElementById('pwaInstallBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.classList.remove('hidden');
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        installBtn.classList.add('hidden');
+      }
+      deferredPrompt = null;
+    });
+
+    window.addEventListener('appinstalled', () => {
+      installBtn.classList.add('hidden');
+      console.log('PWA installed successfully');
+    });
+  </script>
+</body>
+</html>
