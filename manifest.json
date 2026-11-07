@@ -1,0 +1,26 @@
+{
+  "name": "منصة روّاد الغد التعليمية",
+  "short_name": "روّاد الغد",
+  "description": "منصة مدرسة روّاد الغد النموذجية - أريحا · بوابة موحّدة لمنصات المعلمين",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fbff",
+  "theme_color": "#1e3a8a",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "https://z-cdn-media.chatglm.cn/files/b1f12e1a-3048-4b26-aff9-3fba3cdc08c7.png?auth_key=1887680306-b42e44f4bb384238b6679f05b002998a-0-2527ab46db1f27043b737c61607b6291",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://z-cdn-media.chatglm.cn/files/b1f12e1a-3048-4b26-aff9-3fba3cdc08c7.png?auth_key=1887680306-b42e44f4bb384238b6679f05b002998a-0-2527ab46db1f27043b737c61607b6291",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
