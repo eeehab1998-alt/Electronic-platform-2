@@ -11,13 +11,13 @@
   "lang": "ar",
   "icons": [
     {
-      "src": "https://z-cdn-media.chatglm.cn/files/1cfdbb39-1605-4c07-b649-14539ef5b6d5.png",
+      "src": "icon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://z-cdn-media.chatglm.cn/files/1cfdbb39-1605-4c07-b649-14539ef5b6d5.png",
+      "src": "icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
